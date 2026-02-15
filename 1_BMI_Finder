@@ -1,0 +1,57 @@
+<html>
+
+<head>
+  <title>
+    BMI Calculator
+  </title>
+  <style>
+    * {
+      margin: 0px;
+      padding: 10px;
+      background-color: beige;
+    }
+
+    
+    input {
+      display: flex;
+      background-color: rgb(255, 181, 112);
+      margin-bottom: 10px;
+      border-radius: 10px;
+    }
+
+    button {
+      background-color: rgb(255, 255, 198);
+      margin-top: 20px;
+      border-radius: 25px;
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    <h3>BMI Calculator</h3>
+    <form>
+      <input id="weight" placeholder="Enter Weight (kg)" required>
+      <input id="height" placeholder="Enter Height (cm)" required>
+      <input id="age" placeholder="Enter Age">
+      <input id="gender" placeholder="Enter Gender">
+      <button id="find" type="submit">Find BMI</button>
+    </form>
+    <p id="answer"></p>
+
+  </div>
+  <script>
+    const weight = document.querySelector("#weight");
+    const height = document.querySelector("#height");
+    const answer = document.querySelector("#answer");
+    document.querySelector('#find').onclick = function () {
+      event.preventDefault();
+      const w = Number(weight.value);
+      const h = Number(height.value) / 100;
+      const bmi = (w / (h * h)).toFixed(2);
+      answer.innerHTML = `Your BMI is ${bmi}`;
+    }
+  </script>
+</body> 
+
+</html>
