@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Typing Speed Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: #f4f4f4;
+            padding: 40px;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            width: 600px;
+            margin: auto;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        #sentence {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 100px;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin-top: 15px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>🚀 Typing Speed Test</h2>
+    <p id="sentence"></p>
+    <textarea id="inputText" placeholder="Start typing here..."></textarea>
+    <br>
+    <button onclick="startTest()">Start</button>
+    <button onclick="endTest()">Submit</button>
+
+    <div class="result">
+        <p>⏱ Time: <span id="time">0</span> sec</p>
+        <p>⚡ Speed: <span id="wpm">0</span> WPM</p>
+        <p>🎯 Accuracy: <span id="accuracy">0</span>%</p>
+    </div>
+</div>
+
+<script>
+    const sentences = [
+        "JavaScript is a powerful programming language.",
+        "Practice coding every day to improve your skills.",
+        "Consistency is the key to success in software development.",
+        "Frontend and backend together make full stack development."
+    ];
+
+    let startTime;
+
+    function startTest() {
+        const randomIndex = Math.floor(Math.random() * sentences.length);
+        document.getElementById("sentence").innerText = sentences[randomIndex];
+        document.getElementById("inputText").value = "";
+        document.getElementById("time").innerText = "0";
+        document.getElementById("wpm").innerText = "0";
+        document.getElementById("accuracy").innerText = "0";
+        startTime = new Date().getTime();
+    }
+
+    function endTest() {
+        const endTime = new Date().getTime();
+        const totalTime = (endTime - startTime) / 1000;
+        document.getElementById("time").innerText = totalTime.toFixed(2);
+
+        const typedText = document.getElementById("inputText").value;
+        const originalText = document.getElementById("sentence").innerText;
+
+        const wordCount = typedText.trim().split(" ").length;
+        const wpm = (wordCount / totalTime) * 60;
+        document.getElementById("wpm").innerText = Math.round(wpm);
+
+        let correctChars = 0;
+        for (let i = 0; i < typedText.length; i++) {
+            if (typedText[i] === originalText[i]) {
+                correctChars++;
+            }
+        }
+
+        const accuracy = (correctChars / originalText.length) * 100;
+        document.getElementById("accuracy").innerText = accuracy.toFixed(2);
+    }
+</script>
+
+</body>
+</html>
