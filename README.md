@@ -4,3 +4,4 @@ This repo will have the code for some of my mini projects which I made during my
 Projects list:
 1. BMI Finder -- Built using HTML, CSS and JavaScript, finds BMI based on user's given input (details).
 2. Typing speed Tester -- Built using the core concept of JavaScript, where user can test there typing speed.
+3. Smart Expensive Tracker
